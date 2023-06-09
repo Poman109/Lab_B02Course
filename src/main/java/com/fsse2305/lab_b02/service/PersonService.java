@@ -100,5 +100,15 @@ public class PersonService implements PersonServiceImpl {
 
     }
 
+    public PersonEntity getCourseTeacher(String teacherHkid){
+        for(PersonEntity personEntity:personEntityList){
+            if(personEntity.getHkid().equals(teacherHkid)){
+                return personEntity;
+            }
+        }
+
+        return null;
+    }
+
 
 }
