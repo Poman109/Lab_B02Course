@@ -1,13 +1,17 @@
-package com.fsse2305.lab_b02.data.entity;
+package com.fsse2305.lab_b02.data;
+
+import com.fsse2305.lab_b02.data.entity.CourseEntity;
 
 import java.util.List;
 
-public class CourseEntity {
+public class GotAllCourseData {
     private String courseId;
     private String name;
     private Double price;
-    private PersonEntity teacher;
-    private List<PersonEntity> students;
+    private PersonDetailData teacher;
+    private List<PersonDetailData> students;
+
+
 
     public String getCourseId() {
         return courseId;
@@ -21,11 +25,11 @@ public class CourseEntity {
         return price;
     }
 
-    public PersonEntity getTeacher() {
+    public PersonDetailData getTeacher() {
         return teacher;
     }
 
-    public List<PersonEntity> getStudents() {
+    public List<PersonDetailData> getStudents() {
         return students;
     }
 
@@ -41,11 +45,11 @@ public class CourseEntity {
         this.price = price;
     }
 
-    public void setTeacher(PersonEntity teacher) {
+    public void setTeacher(PersonDetailData teacher) {
         this.teacher = teacher;
     }
 
-    public void setStudents(List<PersonEntity> students) {
+    public void setStudents(List<PersonDetailData> students) {
         this.students = students;
     }
 }
