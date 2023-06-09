@@ -1,12 +1,7 @@
 package com.fsse2305.lab_b02.api;
 
-import com.fsse2305.lab_b02.data.CourseDetailData;
-import com.fsse2305.lab_b02.data.CreateCourseData;
-import com.fsse2305.lab_b02.data.GotAllCourseData;
-import com.fsse2305.lab_b02.data.dto.CourseDetailResponseDto;
-import com.fsse2305.lab_b02.data.dto.CreateCourseRequestDto;
-import com.fsse2305.lab_b02.data.dto.GotAllCourseDataResponseDto;
-import com.fsse2305.lab_b02.data.dto.PersonDetailResponseDto;
+import com.fsse2305.lab_b02.data.*;
+import com.fsse2305.lab_b02.data.dto.*;
 import com.fsse2305.lab_b02.service.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -52,6 +47,24 @@ public class CourseApi {
        return gotAllCourseDataResponseDtoArray;
     }
 
+    @PutMapping("/course")
+    public UpdateCourseResponseDto updateCourseResponseDto(@RequestBody UpdateCourseRequestDto updateCourseRequestDto){
+        UpdateCourseData updateCourseData = new UpdateCourseData();
+        updateCourseData.setName(updateCourseRequestDto.getName());
+        updateCourseData.setCourseld(updateCourseRequestDto.getCourseId());
+        updateCourseData.setPrice(updateCourseRequestDto.getPrice());
+        updateCourseData.setTeacherHkid(updateCourseRequestDto.getTeacherHkid());
+
+        UpdatedCourseData updatedCourseData = courseService.updateCourse(updateCourseData);
+        UpdateCourseResponseDto updateCourseResponseDto = new UpdateCourseResponseDto();
+        updateCourseResponseDto.setName(updatedCourseData.getName());
+        updateCourseResponseDto.setPrice(updatedCourseData.getPrice());
+        updateCourseResponseDto.setCourseId(updatedCourseData.getCourseId());
+        PersonDetailResponseDto teacher = new PersonDetailResponseDto(updatedCourseData.getTeacher());
+        updateCourseResponseDto.setTeacher(teacher);
+        return updateCourseResponseDto;
+
+    }
 
 
 

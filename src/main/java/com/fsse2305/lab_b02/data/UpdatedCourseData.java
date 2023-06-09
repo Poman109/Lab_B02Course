@@ -1,16 +1,13 @@
-package com.fsse2305.lab_b02.data.dto;
+package com.fsse2305.lab_b02.data;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.List;
 
-public class CreateCourseRequestDto {
-    @JsonProperty("course_id")
+public class UpdatedCourseData {
     private String courseId;
-    @JsonProperty("course name")
     private String name;
-    @JsonProperty("price")
     private Double price;
-    @JsonProperty("teacher_hkid")
-    private String teacherHkid;
+    private PersonDetailData teacher;
+    private List<PersonDetailData> students;
 
     public String getCourseId() {
         return courseId;
@@ -24,8 +21,12 @@ public class CreateCourseRequestDto {
         return price;
     }
 
-    public String getTeacherHkid() {
-        return teacherHkid;
+    public PersonDetailData getTeacher() {
+        return teacher;
+    }
+
+    public List<PersonDetailData> getStudents() {
+        return students;
     }
 
     public void setCourseId(String courseId) {
@@ -40,7 +41,11 @@ public class CreateCourseRequestDto {
         this.price = price;
     }
 
-    public void setTeacherHkid(String teacherHkid) {
-        this.teacherHkid = teacherHkid;
+    public void setTeacher(PersonDetailData teacher) {
+        this.teacher = teacher;
+    }
+
+    public void setStudents(List<PersonDetailData> students) {
+        this.students = students;
     }
 }

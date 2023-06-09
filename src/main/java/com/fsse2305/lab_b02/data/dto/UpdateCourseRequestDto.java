@@ -1,23 +1,16 @@
 package com.fsse2305.lab_b02.data.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fsse2305.lab_b02.data.CourseDetailData;
 
-import java.util.List;
-
-
-public class CourseDetailResponseDto {
+public class UpdateCourseRequestDto {
     @JsonProperty("course_id")
     private String courseId;
     @JsonProperty("course name")
     private String name;
     @JsonProperty("price")
     private Double price;
-    @JsonProperty("teacher")
-    private PersonDetailResponseDto teacher;
-    @JsonProperty("students")
-    private List<PersonDetailResponseDto> students;
-
+    @JsonProperty("teacher_hkid")
+    private String teacherHkid;
 
     public String getCourseId() {
         return courseId;
@@ -31,12 +24,8 @@ public class CourseDetailResponseDto {
         return price;
     }
 
-    public PersonDetailResponseDto getTeacher() {
-        return teacher;
-    }
-
-    public List<PersonDetailResponseDto> getStudents() {
-        return students;
+    public String getTeacherHkid() {
+        return teacherHkid;
     }
 
     public void setCourseId(String courseId) {
@@ -51,11 +40,7 @@ public class CourseDetailResponseDto {
         this.price = price;
     }
 
-    public void setTeacher(PersonDetailResponseDto teacher) {
-        this.teacher = teacher;
-    }
-
-    public void setStudents(List<PersonDetailResponseDto> students) {
-        this.students = students;
+    public void setTeacherHkid(String teacherHkid) {
+        this.teacherHkid = teacherHkid;
     }
 }

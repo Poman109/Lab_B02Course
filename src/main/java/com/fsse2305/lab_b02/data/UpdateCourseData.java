@@ -1,19 +1,13 @@
-package com.fsse2305.lab_b02.data.dto;
+package com.fsse2305.lab_b02.data;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
-public class CreateCourseRequestDto {
-    @JsonProperty("course_id")
-    private String courseId;
-    @JsonProperty("course name")
+public class UpdateCourseData {
+    private String courseld;
     private String name;
-    @JsonProperty("price")
     private Double price;
-    @JsonProperty("teacher_hkid")
     private String teacherHkid;
 
-    public String getCourseId() {
-        return courseId;
+    public String getCourseld() {
+        return courseld;
     }
 
     public String getName() {
@@ -28,8 +22,8 @@ public class CreateCourseRequestDto {
         return teacherHkid;
     }
 
-    public void setCourseId(String courseId) {
-        this.courseId = courseId;
+    public void setCourseld(String courseld) {
+        this.courseld = courseld;
     }
 
     public void setName(String name) {

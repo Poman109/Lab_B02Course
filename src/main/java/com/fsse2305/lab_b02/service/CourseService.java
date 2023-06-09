@@ -55,4 +55,25 @@ public class CourseService {
         }
         return gotAllCourseDataArray;
     }
+
+    public UpdatedCourseData updateCourse(UpdateCourseData updateCourseData){
+        for(CourseEntity courseEntity:courseEntityList){
+            if (courseEntity.getCourseId().equals(updateCourseData.getCourseld())){
+                courseEntity.setCourseId(updateCourseData.getCourseld());
+                courseEntity.setName(updateCourseData.getName());
+                courseEntity.setPrice(updateCourseData.getPrice());
+                courseEntity.setCourseId(updateCourseData.getCourseld());
+                courseEntity.setTeacher(personService.getCourseTeacher(updateCourseData.getTeacherHkid()));
+
+                UpdatedCourseData updatedCourseData = new UpdatedCourseData();
+                updatedCourseData.setName(courseEntity.getName());
+                updatedCourseData.setPrice(courseEntity.getPrice());
+                updatedCourseData.setCourseId(courseEntity.getCourseId());
+                PersonDetailData teacher = new PersonDetailData(courseEntity.getTeacher());
+                updatedCourseData.setTeacher(teacher);
+                return updatedCourseData;
+            }
+        }
+        throw new NotFoundPeopleException();
+    }
 }
