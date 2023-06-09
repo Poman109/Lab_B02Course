@@ -11,6 +11,7 @@ import java.util.List;
 @Service
 public class PersonService implements PersonServiceImpl {
     private static List<PersonEntity> personEntityList = new ArrayList<>();
+    private static List<PersonEntity> studentsArray = new ArrayList<>();
 
 
     @Override

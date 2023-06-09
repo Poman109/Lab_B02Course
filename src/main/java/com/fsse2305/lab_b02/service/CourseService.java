@@ -76,4 +76,23 @@ public class CourseService {
         }
         throw new NotFoundPeopleException();
     }
+
+    public DeletedCourseByCourseIdData deleteCourse(String courseId){
+        for (CourseEntity courseEntity: courseEntityList){
+            if (courseEntity.getCourseId().equals(courseId)){
+                courseEntityList.remove(courseEntity);
+                DeletedCourseByCourseIdData deletedCourseByCourseIdData = new DeletedCourseByCourseIdData();
+                deletedCourseByCourseIdData.setCourseId(courseEntity.getCourseId());
+                deletedCourseByCourseIdData.setName(courseEntity.getName());
+                deletedCourseByCourseIdData.setPrice(courseEntity.getPrice());
+                PersonDetailData teacher = new PersonDetailData(courseEntity.getTeacher());
+                deletedCourseByCourseIdData.setTeacher(teacher);
+
+                return deletedCourseByCourseIdData;
+            }
+
+        }
+
+        throw new NotFoundPeopleException();
+    }
 }

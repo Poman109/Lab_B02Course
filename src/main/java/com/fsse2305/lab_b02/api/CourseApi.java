@@ -48,7 +48,7 @@ public class CourseApi {
     }
 
     @PutMapping("/course")
-    public UpdateCourseResponseDto updateCourseResponseDto(@RequestBody UpdateCourseRequestDto updateCourseRequestDto){
+    public UpdateCourseResponseDto updateCourse(@RequestBody UpdateCourseRequestDto updateCourseRequestDto){
         UpdateCourseData updateCourseData = new UpdateCourseData();
         updateCourseData.setName(updateCourseRequestDto.getName());
         updateCourseData.setCourseld(updateCourseRequestDto.getCourseId());
@@ -65,6 +65,20 @@ public class CourseApi {
         return updateCourseResponseDto;
 
     }
+
+    @DeleteMapping("/course/{course_id}")
+    public DeleteCourseByCourseIdResponseDto deleteCourse(@PathVariable("course_id")String courseId ){
+       DeletedCourseByCourseIdData deletedCourseByCourseIdData = courseService.deleteCourse(courseId);
+       DeleteCourseByCourseIdResponseDto deleteCourseByCourseIdResponseDto = new DeleteCourseByCourseIdResponseDto();
+       deleteCourseByCourseIdResponseDto.setCourseId(deletedCourseByCourseIdData.getCourseId());
+       deleteCourseByCourseIdResponseDto.setName(deletedCourseByCourseIdData.getName());
+       deleteCourseByCourseIdResponseDto.setPrice(deletedCourseByCourseIdData.getPrice());
+       PersonDetailResponseDto teacher = new PersonDetailResponseDto(deletedCourseByCourseIdData.getTeacher());
+       deleteCourseByCourseIdResponseDto.setTeacher(teacher);
+
+       return deleteCourseByCourseIdResponseDto;
+    }
+
 
 
 
