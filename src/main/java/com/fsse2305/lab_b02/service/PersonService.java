@@ -111,5 +111,18 @@ public class PersonService implements PersonServiceImpl {
         return null;
     }
 
+    public List<PersonEntity> createCourseStudent(String studentHkid){
+        for(PersonEntity personEntity:personEntityList){
+            if(personEntity.getHkid().equals(studentHkid)){
+                studentsArray.add(personEntity);
+
+            }
+        }
+
+        return studentsArray;
+    }
+
+
+
 
 }

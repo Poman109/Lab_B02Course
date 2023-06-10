@@ -2,6 +2,7 @@ package com.fsse2305.lab_b02.service;
 
 import com.fsse2305.lab_b02.data.*;
 import com.fsse2305.lab_b02.data.entity.CourseEntity;
+import com.fsse2305.lab_b02.data.entity.PersonEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -91,6 +92,31 @@ public class CourseService {
                 return deletedCourseByCourseIdData;
             }
 
+        }
+
+        throw new NotFoundPeopleException();
+    }
+
+    public CourseDetailData createStudent(String courseId, String hkid){
+        for(CourseEntity courseEntity: courseEntityList){
+            if (courseEntity.getCourseId().equals(courseId)){
+                CourseDetailData courseDetailData = new CourseDetailData();
+                courseDetailData.setCourseId(courseEntity.getCourseId());
+                courseDetailData.setName(courseEntity.getName());
+                courseDetailData.setPrice(courseEntity.getPrice());
+                PersonDetailData teacher = new PersonDetailData(courseEntity.getTeacher());
+                courseDetailData.setTeacher(teacher);
+
+                List<PersonEntity> studentsArray = personService.createCourseStudent(hkid);
+                List<PersonDetailData> studentArray = new ArrayList<>();
+                for(PersonEntity personEntity : studentsArray){
+                    PersonDetailData personDetailData = new PersonDetailData(personEntity);
+                    studentArray.add(personDetailData);
+                }
+                courseDetailData.setStudents(studentArray);
+
+                return courseDetailData;
+            }
         }
 
         throw new NotFoundPeopleException();

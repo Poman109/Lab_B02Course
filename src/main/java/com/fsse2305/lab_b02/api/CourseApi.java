@@ -79,6 +79,30 @@ public class CourseApi {
        return deleteCourseByCourseIdResponseDto;
     }
 
+    @PatchMapping("/course/{course_id}/add-student/{person_hkid}")
+    @ResponseBody
+    public CourseDetailResponseDto createStudent(@PathVariable("course_id") String courseId, @PathVariable ("person_hkid") String hkid){
+        CourseDetailData courseDetailData = courseService.createStudent(courseId,hkid);
+        CourseDetailResponseDto courseDetailResponseDto = new CourseDetailResponseDto();
+
+        courseDetailResponseDto.setPrice(courseDetailData.getPrice());
+        PersonDetailResponseDto teacher = new PersonDetailResponseDto(courseDetailData.getTeacher());
+        courseDetailResponseDto.setTeacher(teacher);
+
+        List<PersonDetailData> studentArray = courseDetailData.getStudents();
+        List<PersonDetailResponseDto> studentsArray = new ArrayList<>();
+        for(PersonDetailData personDetailData: studentArray){
+            PersonDetailResponseDto student = new PersonDetailResponseDto(personDetailData);
+            studentsArray.add(student);
+
+        }
+        courseDetailResponseDto.setStudents(studentsArray);
+        courseDetailResponseDto.setCourseId(courseDetailData.getCourseId());
+        courseDetailResponseDto.setName(courseDetailData.getName());
+
+        return courseDetailResponseDto;
+    }
+
 
 
 
